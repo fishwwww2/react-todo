@@ -46,7 +46,7 @@ react-todo/
 ┃ ┃ ┗ Quote.jsx
 ┃ ┣ hooks/
 ┃ ┃ ┗ useTodos.js
-┃ ┣ constants/
+┃ ┣ env/
 ┃ ┃ ┗ api.js
 ┃ ┣ App.jsx
 ┃ ┗ App.css
