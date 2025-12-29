@@ -1,45 +1,33 @@
 import { useState } from "react";
+import useTodos from "../hooks/useTodos";
 import TodoItem from "./TodoItem";
 
 export default function TodoList() {
-  const [todos, setTodos] = useState([]);
+  const { todos, loading, addTodo, toggleTodo, deleteTodo } = useTodos();
   const [input, setInput] = useState("");
 
-  // CREATE
-  const addTodo = () => {
-    if (!input.trim()) return;
-    setTodos([...todos, { id: Date.now(), text: input, done: false }]);
-    setInput("");
-  };
-
-  // UPDATE
-  const toggleTodo = (id) => {
-    setTodos(
-      todos.map(todo =>
-        todo.id === id ? { ...todo, done: !todo.done } : todo
-      )
-    );
-  };
-
-  // DELETE
-  const deleteTodo = (id) => {
-    setTodos(todos.filter(todo => todo.id !== id));
-  };
+  if (loading) return <p>로딩 중...</p>;
 
   return (
     <div className="todo-box">
-      <h2>Todo List</h2>
       <input
         value={input}
         onChange={(e) => setInput(e.target.value)}
       />
-      <button onClick={addTodo}>추가</button>
+      <button
+        onClick={() => {
+          addTodo(input);
+          setInput("");
+        }}
+      >
+        추가
+      </button>
 
       {todos.map(todo => (
         <TodoItem
           key={todo.id}
           todo={todo}
-          toggleTodo={toggleTodo}
+          toggleTodo={() => toggleTodo(todo.id, todo.done)}
           deleteTodo={deleteTodo}
         />
       ))}

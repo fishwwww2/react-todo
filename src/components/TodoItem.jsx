@@ -4,16 +4,11 @@ export default function TodoItem({ todo, toggleTodo, deleteTodo }) {
       <input
         type="checkbox"
         checked={todo.done}
-        onChange={() => toggleTodo(todo.id)}
+        onChange={toggleTodo}
       />
-
-      <span
-        className={todo.done ? "done" : ""}
-        onClick={() => toggleTodo(todo.id)}
-      >
+      <span className={todo.done ? "done" : ""}>
         {todo.text}
       </span>
-
       <button onClick={() => deleteTodo(todo.id)}>삭제</button>
     </div>
   );
