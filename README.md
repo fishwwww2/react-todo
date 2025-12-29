@@ -54,10 +54,6 @@ react-todo/
 ┣ package.json
 ┗ README.md
 ```
-
-yaml
-코드 복사
-
 ---
 
 ## 📌 Custom Hook 설명
